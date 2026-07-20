@@ -1,0 +1,121 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    name: Ruff / Mypy / YAML lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+        with:
+          python-version: "3.12"
+      - run: uv sync --frozen
+      - name: Ruff lint
+        run: uv run ruff check .
+      - name: Ruff format check
+        run: uv run ruff format --check .
+      - name: Mypy
+        run: uv run mypy
+      - name: YAML lint
+        run: uv run yamllint .
+
+  test:
+    name: Pytest
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+        with:
+          python-version: "3.12"
+      - run: uv sync --frozen
+      - run: uv run pytest
+
+  markdown-lint:
+    name: Markdown lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: DavidAnson/markdownlint-cli2-action@v16
+        with:
+          globs: |
+            **/*.md
+            !.venv
+
+  schema-validation:
+    name: JSON Schema validation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+        with:
+          python-version: "3.12"
+      - run: uv sync --frozen
+      - run: uv run python .github/scripts/validate_schemas.py
+
+  logs-validation:
+    name: AI usage / work log validation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+        with:
+          python-version: "3.12"
+      - run: uv sync --frozen
+      - name: Validate AI usage logs (incl. person-hours rules)
+        run: uv run lcg validate ai-usage reports/ai-usage examples/ai-usage
+      - name: Validate work logs and estimates
+        run: uv run lcg validate work-log reports/effort examples/effort
+      - name: Generated report validation (smoke)
+        run: |
+          uv run lcg report ai-usage --data-dir examples --format markdown > /dev/null
+          uv run lcg report effort --data-dir examples --format json > /dev/null
+          uv run lcg report monthly --month 2026-07 --data-dir examples --format csv > /dev/null
+
+  secret-scan:
+    name: Secret scanning (gitleaks)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  dependency-audit:
+    name: Dependency vulnerability check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+        with:
+          python-version: "3.12"
+      - name: Export locked requirements
+        run: uv export --frozen --no-dev --format requirements-txt > requirements.txt
+      - name: pip-audit
+        run: uvx pip-audit -r requirements.txt --disable-pip
+
+  license-check:
+    name: License check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+        with:
+          python-version: "3.12"
+      - run: uv sync --frozen
+      - name: List dependency licenses and fail on strong copyleft
+        run: |
+          uv run --with pip-licenses pip-licenses --format=markdown | tee licenses.md
+          if grep -iE '\|\s*(AGPL|GPLv3|GPL v3)' licenses.md; then
+            echo "::error::Strong copyleft license detected; review before merging"
+            exit 1
+          fi

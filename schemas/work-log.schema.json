@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/mmasa/learning-content-generator/schemas/work-log.schema.json",
+  "title": "Work Log",
+  "description": "A list of work log entries. Stored as reports/effort/YYYY-MM.yaml. spent_person_hours must equal the sum of participant hours (tolerance 0.01); this cross-field rule is enforced by `lcg validate work-log`.",
+  "type": "array",
+  "items": { "$ref": "#/$defs/entry" },
+  "$defs": {
+    "entry": {
+      "type": "object",
+      "required": [
+        "date", "issue", "work_type", "summary", "participants",
+        "elapsed_hours", "spent_person_hours", "ai_used"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "date": { "type": "string", "format": "date" },
+        "issue": { "type": "integer", "minimum": 0 },
+        "work_type": {
+          "enum": [
+            "Implementation", "Review", "Fix", "Meeting", "Research",
+            "Data Creation", "Documentation", "Testing",
+            "Incident Response", "Other"
+          ]
+        },
+        "summary": { "type": "string", "minLength": 1 },
+        "participants": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["name", "hours"],
+            "additionalProperties": false,
+            "properties": {
+              "name": { "type": "string", "minLength": 1 },
+              "hours": { "type": "number", "minimum": 0 }
+            }
+          }
+        },
+        "elapsed_hours": { "type": "number", "minimum": 0 },
+        "spent_person_hours": { "type": "number", "minimum": 0 },
+        "ai_used": { "type": "boolean" },
+        "ai_tool": { "type": ["string", "null"] },
+        "category": { "type": ["string", "null"] },
+        "result": { "type": ["string", "null"] },
+        "remaining_work": { "type": ["string", "null"] }
+      }
+    }
+  }
+}

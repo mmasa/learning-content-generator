@@ -1,0 +1,1 @@
+"""`lcg` command line interface."""

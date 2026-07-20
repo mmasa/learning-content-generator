@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/mmasa/learning-content-generator/contents/takken/schemas/reading-script.schema.json",
+  "title": "Takken Reading Script",
+  "description": "A TTS-ready reading script generated from normalized content.",
+  "type": "object",
+  "required": ["id", "title", "style", "sections", "review"],
+  "additionalProperties": false,
+  "properties": {
+    "id": { "type": "string", "pattern": "^takken-rs-[0-9a-z-]+$" },
+    "question_id": {
+      "type": ["string", "null"],
+      "description": "Related question id, if the script narrates a question"
+    },
+    "title": { "type": "string", "minLength": 1 },
+    "style": { "enum": ["lecture", "drill", "podcast"] },
+    "sections": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["role", "text"],
+        "additionalProperties": false,
+        "properties": {
+          "role": {
+            "enum": ["intro", "question", "choices", "pause", "answer", "explanation", "outro"]
+          },
+          "text": { "type": "string" },
+          "reading_notes": {
+            "type": ["string", "null"],
+            "description": "Pronunciation guidance: readings for numbers, symbols, law names"
+          }
+        }
+      }
+    },
+    "estimated_duration_seconds": { "type": ["number", "null"], "minimum": 0 },
+    "generated_by_ai": { "type": "boolean" },
+    "ai_usage_ref": { "type": ["string", "null"] },
+    "review": {
+      "type": "object",
+      "required": ["status"],
+      "additionalProperties": false,
+      "properties": {
+        "status": { "enum": ["pending", "approved", "rejected", "revised"] },
+        "reviewer": { "type": ["string", "null"] },
+        "reviewed_at": { "type": ["string", "null"], "format": "date" },
+        "naturalness_checked": {
+          "type": "boolean",
+          "description": "A human read the script aloud / listened and confirmed it sounds natural"
+        }
+      }
+    }
+  }
+}

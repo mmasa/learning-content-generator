@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/mmasa/learning-content-generator/contents/takken/schemas/source-record.schema.json",
+  "title": "Takken Source Record",
+  "description": "Provenance and copyright record for imported material. Stored as a list in metadata/sources.yaml.",
+  "type": "object",
+  "required": ["id", "title", "copyright_status", "permitted_use", "data_classification"],
+  "additionalProperties": false,
+  "properties": {
+    "id": { "type": "string", "pattern": "^src-[0-9a-z-]+$" },
+    "title": { "type": "string", "minLength": 1 },
+    "publisher": { "type": ["string", "null"] },
+    "url": { "type": ["string", "null"] },
+    "license": { "type": ["string", "null"] },
+    "copyright_status": {
+      "enum": ["fictional", "owned", "licensed", "public-domain", "unverified"]
+    },
+    "permitted_use": {
+      "type": "string",
+      "description": "What we are allowed to do with this material (and why)"
+    },
+    "confirmed_by": { "type": ["string", "null"] },
+    "confirmed_at": { "type": ["string", "null"], "format": "date" },
+    "data_classification": { "enum": ["Public", "Internal", "Confidential", "Restricted"] },
+    "notes": { "type": ["string", "null"] }
+  }
+}

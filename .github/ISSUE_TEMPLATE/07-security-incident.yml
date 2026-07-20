@@ -1,0 +1,78 @@
+name: Security Incident
+description: セキュリティインシデントの報告(秘密情報そのものは記載しない)
+title: "security: "
+labels: ["type:security-incident", "priority:high"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **注意: APIキー・トークン・個人情報など秘密情報そのものをこのIssueに記載しないでください。**
+        対応手順は docs/governance/incident-management.md を参照。
+        認証情報の漏えいの場合は、まず該当情報の無効化を最優先で実施してください。
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: 何が起きたか(秘密情報は含めない)
+    validations:
+      required: true
+  - type: input
+    id: detected_at
+    attributes:
+      label: Detected At
+      placeholder: "2026-07-20T14:30+09:00"
+    validations:
+      required: true
+  - type: textarea
+    id: detection
+    attributes:
+      label: Detection Method
+      description: どのように検知したか
+    validations:
+      required: true
+  - type: textarea
+    id: impact
+    attributes:
+      label: Impact Assessment
+      description: 影響範囲・影響するデータ分類・外部影響の有無
+    validations:
+      required: true
+  - type: dropdown
+    id: data_classification
+    attributes:
+      label: Data Classification (affected)
+      options: ["Public", "Internal", "Confidential", "Restricted"]
+    validations:
+      required: true
+  - type: textarea
+    id: initial_response
+    attributes:
+      label: Initial Response
+      description: 実施済み・実施予定の初動対応(無効化・非公開化など)
+    validations:
+      required: true
+  - type: textarea
+    id: permanent_fix
+    attributes:
+      label: Permanent Fix / Recurrence Prevention
+  - type: input
+    id: assignee
+    attributes:
+      label: Assignee
+    validations:
+      required: true
+  - type: input
+    id: estimated_hours
+    attributes:
+      label: Estimated Person-Hours
+      description: 緊急時は概算でよい(実績は必ず記録)
+      placeholder: "1.0"
+  - type: input
+    id: actual_hours
+    attributes:
+      label: Actual Person-Hours
+      placeholder: "TBD"
+  - type: textarea
+    id: related
+    attributes:
+      label: Related Issues / Pull Requests

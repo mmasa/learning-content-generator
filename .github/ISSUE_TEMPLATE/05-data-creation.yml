@@ -1,0 +1,100 @@
+name: Data Creation
+description: 学習データ・コンテンツデータの作成
+title: "data: "
+labels: ["type:data"]
+body:
+  - type: textarea
+    id: purpose
+    attributes:
+      label: Purpose
+    validations:
+      required: true
+  - type: input
+    id: category
+    attributes:
+      label: Content Category
+      placeholder: "takken"
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope
+      description: 作成するデータの範囲・件数
+    validations:
+      required: true
+  - type: textarea
+    id: out_of_scope
+    attributes:
+      label: Out of Scope
+  - type: textarea
+    id: source
+    attributes:
+      label: Data Source and Copyright
+      description: 出典・著作権状態・利用許諾。未確認データは追加しないこと
+    validations:
+      required: true
+  - type: textarea
+    id: deliverables
+    attributes:
+      label: Deliverables
+      description: スキーマ準拠ファイル・出典記録など
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance_criteria
+    attributes:
+      label: Acceptance Criteria
+      description: スキーマ検証合格・出典記録あり・レビュー完了 など
+    validations:
+      required: true
+  - type: textarea
+    id: risks
+    attributes:
+      label: Risks
+  - type: textarea
+    id: security
+    attributes:
+      label: Security Considerations
+  - type: dropdown
+    id: data_classification
+    attributes:
+      label: Data Classification
+      options: ["Public", "Internal", "Confidential", "Restricted"]
+    validations:
+      required: true
+  - type: input
+    id: assignee
+    attributes:
+      label: Assignee
+    validations:
+      required: true
+  - type: input
+    id: reviewer
+    attributes:
+      label: Reviewer
+    validations:
+      required: true
+  - type: input
+    id: estimated_hours
+    attributes:
+      label: Estimated Person-Hours
+      placeholder: "3.0"
+    validations:
+      required: true
+  - type: input
+    id: actual_hours
+    attributes:
+      label: Actual Person-Hours
+      placeholder: "TBD"
+  - type: dropdown
+    id: ai_usage_planned
+    attributes:
+      label: AI Usage Planned
+      options: ["Yes", "No", "Undecided"]
+    validations:
+      required: true
+  - type: textarea
+    id: related
+    attributes:
+      label: Related Issues / Pull Requests

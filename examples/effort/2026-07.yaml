@@ -1,0 +1,66 @@
+# Example work log (fictional data for demonstration and tests)
+- date: 2026-07-20
+  issue: 123
+  work_type: Implementation
+  summary: "Takken question JSON schema draft"
+  participants:
+    - name: "Masato Miyaichi"
+      hours: 0.5
+    - name: "Reviewer Name"
+      hours: 0.5
+  elapsed_hours: 0.5
+  spent_person_hours: 1.0
+  ai_used: true
+  ai_tool: "Claude Code"
+  category: takken
+  result: "Draft completed"
+  remaining_work: "Schema review and test data validation"
+
+- date: 2026-07-21
+  issue: 123
+  work_type: Review
+  summary: "Schema review"
+  participants:
+    - name: "Reviewer Name"
+      hours: 0.75
+  elapsed_hours: 0.75
+  spent_person_hours: 0.75
+  ai_used: false
+  ai_tool: null
+  category: takken
+  result: "Approved with minor comments"
+  remaining_work: null
+
+- date: 2026-07-22
+  issue: 130
+  work_type: Data Creation
+  summary: "Fictional sample questions"
+  participants:
+    - name: "Masato Miyaichi"
+      hours: 1.5
+  elapsed_hours: 1.5
+  spent_person_hours: 1.5
+  ai_used: true
+  ai_tool: "Claude Code"
+  category: takken
+  result: "Two fictional questions created"
+  remaining_work: null
+
+- date: 2026-07-23
+  issue: 131
+  work_type: Meeting
+  summary: "Reading script direction discussion"
+  participants:
+    - name: "Masato Miyaichi"
+      hours: 0.5
+    - name: "Reviewer Name"
+      hours: 0.5
+    - name: "Member C"
+      hours: 0.5
+  elapsed_hours: 0.5
+  spent_person_hours: 1.5
+  ai_used: false
+  ai_tool: null
+  category: takken
+  result: "Direction agreed"
+  remaining_work: "Prototype script"

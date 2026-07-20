@@ -1,0 +1,22 @@
+id: takken
+name: "宅地建物取引士試験"
+name_en: "Real Estate Notary (Takken) Examination"
+language: ja
+data_classification_default: Internal
+fields:
+  - rights
+  - laws-restrictions
+  - tax-appraisal
+  - takken-business-law
+  - other
+schemas:
+  question: schemas/question.schema.json
+  reading_script: schemas/reading-script.schema.json
+  audio_metadata: schemas/audio-metadata.schema.json
+  source_record: schemas/source-record.schema.json
+review:
+  checklist: ../../docs/templates/content-review-checklist.md
+  human_review_required: true
+copyright:
+  raw_data_committed: false
+  unverified_data_allowed: false

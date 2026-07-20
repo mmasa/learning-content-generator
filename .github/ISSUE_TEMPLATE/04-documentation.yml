@@ -1,0 +1,81 @@
+name: Documentation
+description: ドキュメントの作成・更新
+title: "docs: "
+labels: ["type:documentation"]
+body:
+  - type: textarea
+    id: purpose
+    attributes:
+      label: Purpose
+    validations:
+      required: true
+  - type: textarea
+    id: background
+    attributes:
+      label: Background
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope
+      description: 対象ドキュメント
+    validations:
+      required: true
+  - type: textarea
+    id: out_of_scope
+    attributes:
+      label: Out of Scope
+  - type: textarea
+    id: deliverables
+    attributes:
+      label: Deliverables
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance_criteria
+    attributes:
+      label: Acceptance Criteria
+    validations:
+      required: true
+  - type: dropdown
+    id: data_classification
+    attributes:
+      label: Data Classification
+      options: ["Public", "Internal", "Confidential", "Restricted"]
+      default: 1
+    validations:
+      required: true
+  - type: input
+    id: assignee
+    attributes:
+      label: Assignee
+    validations:
+      required: true
+  - type: input
+    id: reviewer
+    attributes:
+      label: Reviewer
+    validations:
+      required: true
+  - type: input
+    id: estimated_hours
+    attributes:
+      label: Estimated Person-Hours
+      placeholder: "1.0"
+    validations:
+      required: true
+  - type: input
+    id: actual_hours
+    attributes:
+      label: Actual Person-Hours
+      placeholder: "TBD"
+  - type: dropdown
+    id: ai_usage_planned
+    attributes:
+      label: AI Usage Planned
+      options: ["Yes", "No", "Undecided"]
+    validations:
+      required: true
+  - type: textarea
+    id: related
+    attributes:
+      label: Related Issues / Pull Requests
