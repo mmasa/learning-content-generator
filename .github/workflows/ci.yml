@@ -99,7 +99,7 @@ jobs:
         with:
           python-version: "3.12"
       - name: Export locked requirements
-        run: uv export --frozen --no-dev --format requirements-txt > requirements.txt
+        run: uv export --frozen --no-dev --no-emit-project --format requirements-txt > requirements.txt
       - name: pip-audit
         run: uvx pip-audit -r requirements.txt --disable-pip
 

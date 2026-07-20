@@ -1,6 +1,8 @@
 {
   // Relaxed rules: Japanese prose and generated tables exceed default limits
   "MD013": false,
+  // AGENTS.md numbers rules 1..12 across sections intentionally
+  "MD029": false,
   "MD033": false,
   "MD041": false,
   "MD024": { "siblings_only": true }
