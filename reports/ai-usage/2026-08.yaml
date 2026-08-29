@@ -1,0 +1,36 @@
+# AI usage log (schema: schemas/ai-usage-log.schema.json)
+- date: 2026-08-29T07:22:00+00:00
+  issue: 2
+  pull_request: null
+  operator: "Masato Miyaichi"
+  provider: Anthropic
+  product: "Claude Code"
+  model: claude-sonnet-5
+  purpose: "governance document review (issue #2)"
+  category: governance
+  tokens:
+    input: not-provided
+    cached_input: not-provided
+    output: not-provided
+    reasoning: not-provided
+    total: not-provided
+  measurement:
+    type: unknown
+  cost:
+    amount: not-provided
+    currency: USD
+    type: unknown
+  prompt_reference: null
+  generated_files:
+    - docs/governance/access-control.md
+    - docs/governance/audit-trail.md
+    - docs/governance/change-management.md
+    - docs/governance/incident-management.md
+    - docs/governance/risk-management.md
+  human_review:
+    status: pending
+    reviewer: null
+    result: null
+  notes: >-
+    10 governance docs reviewed for issue #2; fixed ISO/IEC 27001 wording
+    inconsistency in 5 files; verified cross-links and disclaimer wording
