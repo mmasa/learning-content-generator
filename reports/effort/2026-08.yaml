@@ -1,5 +1,20 @@
 # Work log (schema: schemas/work-log.schema.json)
 - date: 2026-08-29
+  issue: 2
+  work_type: Review
+  summary: "ガバナンス文書10本のレビュー、ISO/IEC 27001表記統一とクロスリンク確認"
+  participants:
+    - name: "Masato Miyaichi"
+      hours: 1.0
+  elapsed_hours: 1.0
+  spent_person_hours: 1.0
+  ai_used: true
+  ai_tool: "Claude Code"
+  category: governance
+  result: "10文書レビュー完了。ISO/IEC 27001表記不統一を5文書で修正、相互リンク・disclaimer文言を確認"
+  remaining_work: null
+
+- date: 2026-08-29
   issue: 3
   work_type: Testing
   summary: "AI利用ログ運用の受け入れ基準を検証(validate/report コマンドの実地確認)"
