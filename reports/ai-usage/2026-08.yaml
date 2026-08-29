@@ -1,0 +1,31 @@
+# AI usage log (schema: schemas/ai-usage-log.schema.json)
+- date: 2026-08-29T08:00:00+00:00
+  issue: 3
+  pull_request: null
+  operator: "Masato Miyaichi"
+  provider: Anthropic
+  product: "Claude Code"
+  model: claude-sonnet-5
+  purpose: "AI usage logging operation acceptance verification (issue #3)"
+  category: governance
+  tokens:
+    input: not-provided
+    cached_input: not-provided
+    output: not-provided
+    reasoning: not-provided
+    total: not-provided
+  measurement:
+    type: unknown
+  cost:
+    amount: not-provided
+    currency: USD
+    type: unknown
+  prompt_reference: null
+  generated_files: []
+  human_review:
+    status: pending
+    reviewer: null
+    result: null
+  notes: >-
+    Verified lcg validate ai-usage and lcg report commands against
+    reports/ai-usage/; no code or data changes were required.
