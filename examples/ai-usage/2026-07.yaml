@@ -1,0 +1,91 @@
+# Example AI usage log (fictional data for demonstration and tests)
+- date: 2026-07-20T14:30:00+09:00
+  issue: 123
+  pull_request: 45
+  operator: "Masato Miyaichi"
+  provider: Anthropic
+  product: "Claude Code"
+  model: claude-fable-5
+  purpose: "repository scaffolding"
+  category: null
+  tokens:
+    input: 12000
+    cached_input: 5000
+    output: 4200
+    reasoning: not-provided
+    total: 16200
+  measurement:
+    type: actual
+  cost:
+    amount: 0.0
+    currency: USD
+    type: unknown
+  prompt_reference: prompts/repository-bootstrap.md
+  generated_files:
+    - README.md
+    - CONTRIBUTING.md
+    - pyproject.toml
+  human_review:
+    status: pending
+    reviewer: null
+    result: null
+  notes: "Initial repository generation"
+
+- date: 2026-07-21T10:00:00+09:00
+  issue: 130
+  pull_request: null
+  operator: "Masato Miyaichi"
+  provider: Anthropic
+  product: "Claude Code"
+  model: claude-fable-5
+  purpose: "draft fictional takken sample questions"
+  category: takken
+  tokens:
+    input: 3000
+    cached_input: 0
+    output: 1800
+    reasoning: not-provided
+    total: 4800
+  measurement:
+    type: actual
+  cost:
+    amount: 0.05
+    currency: USD
+    type: estimated
+  prompt_reference: contents/takken/prompts/question-generation.md
+  generated_files:
+    - contents/takken/normalized/samples/sample-questions.yaml
+  human_review:
+    status: approved
+    reviewer: "Reviewer Name"
+    result: "Fictional content confirmed, no copyright issues"
+  notes: null
+
+- date: 2026-07-22T09:15:00+09:00
+  issue: 131
+  pull_request: 46
+  operator: "Reviewer Name"
+  provider: OpenAI
+  product: ChatGPT
+  model: gpt-example
+  purpose: "review assistance for reading script"
+  category: takken
+  tokens:
+    input: not-provided
+    cached_input: not-provided
+    output: not-provided
+    reasoning: not-provided
+    total: not-provided
+  measurement:
+    type: unknown
+  cost:
+    amount: unknown
+    currency: USD
+    type: unknown
+  prompt_reference: null
+  generated_files: []
+  human_review:
+    status: approved
+    reviewer: "Masato Miyaichi"
+    result: "AI review used as assistance only; human verified"
+  notes: "Token counts not available from the service UI"

@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/mmasa/learning-content-generator/contents/takken/schemas/audio-metadata.schema.json",
+  "title": "Takken Audio Metadata",
+  "description": "Metadata for generated audio. Audio files themselves are never committed; file_path points to local or external storage.",
+  "type": "object",
+  "required": ["id", "script_id", "provider", "voice", "audio_format", "generated_at"],
+  "additionalProperties": false,
+  "properties": {
+    "id": { "type": "string", "pattern": "^takken-au-[0-9a-z-]+$" },
+    "script_id": { "type": "string" },
+    "provider": { "type": "string", "minLength": 1 },
+    "voice": { "type": "string", "minLength": 1 },
+    "model": { "type": ["string", "null"] },
+    "audio_format": { "enum": ["mp3", "wav", "m4a", "flac", "ogg"] },
+    "sample_rate_hz": { "type": ["integer", "null"], "minimum": 1 },
+    "duration_seconds": { "type": ["number", "null"], "minimum": 0 },
+    "generated_at": { "type": "string", "format": "date-time" },
+    "file_path": {
+      "type": ["string", "null"],
+      "description": "Local or external storage reference (not a git-tracked path)"
+    },
+    "checksum_sha256": { "type": ["string", "null"], "pattern": "^[0-9a-f]{64}$" },
+    "ai_usage_ref": { "type": ["string", "null"] },
+    "notes": { "type": ["string", "null"] }
+  }
+}

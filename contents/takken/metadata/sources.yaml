@@ -1,0 +1,13 @@
+# 出典記録(スキーマ: ../schemas/source-record.schema.json)
+# 著作権未確認(unverified)のデータはコミット禁止。
+- id: src-fictional-samples
+  title: "架空サンプル問題(AI生成・動作確認用)"
+  publisher: null
+  url: null
+  license: "Repository license (fictional content created for this project)"
+  copyright_status: fictional
+  permitted_use: "スキーマ・パイプラインの動作確認。実在の試験問題ではないため権利制約なし。"
+  confirmed_by: "Masato Miyaichi"
+  confirmed_at: "2026-07-20"
+  data_classification: Public
+  notes: "AI生成の架空データ。examples/ai-usage/2026-07.yaml に生成記録(サンプル)あり。"

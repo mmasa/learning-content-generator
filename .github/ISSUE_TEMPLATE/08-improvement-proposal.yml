@@ -1,0 +1,82 @@
+name: Improvement Proposal
+description: 運用・品質・プロセスの改善提案(継続的改善)
+title: "improve: "
+labels: ["type:improvement"]
+body:
+  - type: textarea
+    id: purpose
+    attributes:
+      label: Purpose
+      description: 何を改善したいか
+    validations:
+      required: true
+  - type: textarea
+    id: background
+    attributes:
+      label: Background / Evidence
+      description: 根拠となるデータ(見積差異、差戻し件数、AIコスト等)や気づき
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposal
+      description: 具体的な改善案
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance_criteria
+    attributes:
+      label: Acceptance Criteria
+      description: 改善が有効だったと判断する基準
+    validations:
+      required: true
+  - type: textarea
+    id: risks
+    attributes:
+      label: Risks
+  - type: dropdown
+    id: data_classification
+    attributes:
+      label: Data Classification
+      options: ["Public", "Internal", "Confidential", "Restricted"]
+      default: 1
+    validations:
+      required: true
+  - type: input
+    id: assignee
+    attributes:
+      label: Assignee
+  - type: input
+    id: reviewer
+    attributes:
+      label: Reviewer
+  - type: input
+    id: estimated_hours
+    attributes:
+      label: Estimated Person-Hours
+      placeholder: "1.0"
+    validations:
+      required: true
+  - type: input
+    id: actual_hours
+    attributes:
+      label: Actual Person-Hours
+      placeholder: "TBD"
+  - type: dropdown
+    id: ai_usage_planned
+    attributes:
+      label: AI Usage Planned
+      options: ["Yes", "No", "Undecided"]
+    validations:
+      required: true
+  - type: textarea
+    id: related
+    attributes:
+      label: Related Issues / Pull Requests

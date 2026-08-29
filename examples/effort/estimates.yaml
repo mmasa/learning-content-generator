@@ -1,0 +1,18 @@
+# Example issue estimates (fictional data for demonstration and tests)
+- issue: 123
+  title: "Takken question schema"
+  estimated_person_hours: 2.0
+  category: takken
+  assignee: "Masato Miyaichi"
+
+- issue: 130
+  title: "Takken fictional sample questions"
+  estimated_person_hours: 1.0
+  category: takken
+  assignee: "Masato Miyaichi"
+
+- issue: 131
+  title: "Takken reading script prototype"
+  estimated_person_hours: 3.0
+  category: takken
+  assignee: "Reviewer Name"

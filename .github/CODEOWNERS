@@ -1,0 +1,7 @@
+# Default owners — review required for all changes
+* @mmasa
+
+# Governance documents and CI require owner review
+/docs/governance/ @mmasa
+/.github/ @mmasa
+/schemas/ @mmasa

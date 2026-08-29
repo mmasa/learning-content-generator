@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/mmasa/learning-content-generator/contents/takken/schemas/question.schema.json",
+  "title": "Takken Question",
+  "description": "One normalized four-choice question. Files under normalized/ hold a list of these. Questions with copyright_status 'unverified' must not be committed.",
+  "type": "object",
+  "required": [
+    "id", "source", "field", "question_text", "choices", "correct_choice",
+    "explanation", "data_classification", "review"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "id": { "type": "string", "pattern": "^takken-q-[0-9a-z-]+$" },
+    "source": {
+      "type": "object",
+      "required": ["type", "copyright_status"],
+      "additionalProperties": false,
+      "properties": {
+        "type": { "enum": ["fictional", "original", "past-exam", "textbook", "other"] },
+        "reference": {
+          "type": ["string", "null"],
+          "description": "id of a source record in metadata/sources.yaml"
+        },
+        "year": { "type": ["integer", "null"] },
+        "copyright_status": {
+          "enum": ["fictional", "owned", "licensed", "public-domain", "unverified"]
+        },
+        "copyright_confirmed_by": { "type": ["string", "null"] },
+        "copyright_confirmed_at": { "type": ["string", "null"], "format": "date" }
+      }
+    },
+    "field": {
+      "enum": ["rights", "laws-restrictions", "tax-appraisal", "takken-business-law", "other"]
+    },
+    "question_text": { "type": "string", "minLength": 1 },
+    "choices": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "items": {
+        "type": "object",
+        "required": ["number", "text"],
+        "additionalProperties": false,
+        "properties": {
+          "number": { "type": "integer", "minimum": 1, "maximum": 4 },
+          "text": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "correct_choice": { "type": "integer", "minimum": 1, "maximum": 4 },
+    "explanation": { "type": "string", "minLength": 1 },
+    "choice_explanations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["number", "text"],
+        "additionalProperties": false,
+        "properties": {
+          "number": { "type": "integer", "minimum": 1, "maximum": 4 },
+          "text": { "type": "string" }
+        }
+      }
+    },
+    "difficulty": {
+      "oneOf": [{ "enum": ["easy", "medium", "hard"] }, { "type": "null" }]
+    },
+    "tags": { "type": "array", "items": { "type": "string" } },
+    "law_reference": {
+      "type": ["string", "null"],
+      "description": "e.g. 宅地建物取引業法 第3条 (as of a stated date)"
+    },
+    "data_classification": { "enum": ["Public", "Internal", "Confidential", "Restricted"] },
+    "generated_by_ai": { "type": "boolean" },
+    "ai_usage_ref": {
+      "type": ["string", "null"],
+      "description": "Reference into reports/ai-usage/ when generated_by_ai is true"
+    },
+    "review": {
+      "type": "object",
+      "required": ["status"],
+      "additionalProperties": false,
+      "properties": {
+        "status": { "enum": ["pending", "approved", "rejected", "revised"] },
+        "reviewer": { "type": ["string", "null"] },
+        "reviewed_at": { "type": ["string", "null"], "format": "date" },
+        "checklist_completed": { "type": "boolean" }
+      }
+    }
+  }
+}

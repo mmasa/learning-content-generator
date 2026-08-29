@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/mmasa/learning-content-generator/schemas/issue-estimate.schema.json",
+  "title": "Issue Estimates",
+  "description": "Estimated person-hours per issue. Stored as reports/effort/estimates.yaml.",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": ["issue", "title", "estimated_person_hours"],
+    "additionalProperties": false,
+    "properties": {
+      "issue": { "type": "integer", "minimum": 0 },
+      "title": { "type": "string", "minLength": 1 },
+      "estimated_person_hours": { "type": "number", "minimum": 0 },
+      "category": { "type": ["string", "null"] },
+      "assignee": { "type": ["string", "null"] }
+    }
+  }
+}

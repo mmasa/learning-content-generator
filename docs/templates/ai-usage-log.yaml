@@ -1,0 +1,30 @@
+# AI利用ログ テンプレート(reports/ai-usage/YYYY-MM.yaml へ追記)
+# スキーマ: schemas/ai-usage-log.schema.json
+- date: 2026-01-01T00:00:00+09:00
+  issue: 0                    # 関連Issue番号
+  pull_request: null          # 関連PR番号(なければ null)
+  operator: "Your Name"
+  provider: Anthropic         # Anthropic | OpenAI | Google | GitHub | ...
+  product: "Claude Code"
+  model: claude-fable-5
+  purpose: "what the AI was used for"
+  category: null              # takken 等のコンテンツカテゴリ(該当なしは null)
+  tokens:
+    input: not-provided       # 整数 | unknown | not-provided | estimated
+    cached_input: not-provided
+    output: not-provided
+    reasoning: not-provided
+    total: not-provided
+  measurement:
+    type: unknown             # actual | estimated | unknown
+  cost:
+    amount: unknown           # 数値 | unknown
+    currency: USD
+    type: unknown             # actual | estimated | unknown
+  prompt_reference: null      # prompts/xxx.md 等
+  generated_files: []
+  human_review:
+    status: pending           # pending | approved | rejected | revised
+    reviewer: null
+    result: null
+  notes: null

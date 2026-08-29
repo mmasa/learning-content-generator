@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/mmasa/learning-content-generator/schemas/ai-usage-log.schema.json",
+  "title": "AI Usage Log",
+  "description": "A list of AI usage records. Stored as reports/ai-usage/YYYY-MM.yaml or .jsonl (one record per line).",
+  "type": "array",
+  "items": { "$ref": "#/$defs/record" },
+  "$defs": {
+    "tokenCount": {
+      "oneOf": [
+        { "type": "integer", "minimum": 0 },
+        { "enum": ["unknown", "not-provided", "estimated"] }
+      ]
+    },
+    "record": {
+      "type": "object",
+      "required": [
+        "date", "operator", "provider", "product", "model", "purpose",
+        "tokens", "measurement", "cost", "human_review"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "date": { "type": "string", "format": "date-time" },
+        "issue": { "type": ["integer", "null"], "minimum": 0 },
+        "pull_request": { "type": ["integer", "null"], "minimum": 0 },
+        "operator": { "type": "string", "minLength": 1 },
+        "provider": { "type": "string", "minLength": 1 },
+        "product": { "type": "string", "minLength": 1 },
+        "model": { "type": "string", "minLength": 1 },
+        "purpose": { "type": "string", "minLength": 1 },
+        "category": { "type": ["string", "null"] },
+        "tokens": {
+          "type": "object",
+          "required": ["input", "output", "total"],
+          "additionalProperties": false,
+          "properties": {
+            "input": { "$ref": "#/$defs/tokenCount" },
+            "cached_input": { "$ref": "#/$defs/tokenCount" },
+            "output": { "$ref": "#/$defs/tokenCount" },
+            "reasoning": { "$ref": "#/$defs/tokenCount" },
+            "total": { "$ref": "#/$defs/tokenCount" }
+          }
+        },
+        "measurement": {
+          "type": "object",
+          "required": ["type"],
+          "additionalProperties": false,
+          "properties": {
+            "type": { "enum": ["actual", "estimated", "unknown"] }
+          }
+        },
+        "cost": {
+          "type": "object",
+          "required": ["amount", "currency", "type"],
+          "additionalProperties": false,
+          "properties": {
+            "amount": {
+              "oneOf": [
+                { "type": "number", "minimum": 0 },
+                { "enum": ["unknown", "not-provided"] }
+              ]
+            },
+            "currency": { "type": "string", "minLength": 3, "maxLength": 3 },
+            "type": { "enum": ["actual", "estimated", "unknown"] }
+          }
+        },
+        "prompt_reference": { "type": ["string", "null"] },
+        "generated_files": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "human_review": {
+          "type": "object",
+          "required": ["status"],
+          "additionalProperties": false,
+          "properties": {
+            "status": { "enum": ["pending", "approved", "rejected", "revised"] },
+            "reviewer": { "type": ["string", "null"] },
+            "result": { "type": ["string", "null"] }
+          }
+        },
+        "notes": { "type": ["string", "null"] }
+      }
+    }
+  }
+}

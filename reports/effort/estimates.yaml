@@ -1,0 +1,84 @@
+# Issue estimates (schema: schemas/issue-estimate.schema.json)
+- issue: 1
+  title: "Repository bootstrap"
+  estimated_person_hours: 6.0
+  category: null
+  assignee: "Masato Miyaichi"
+
+- issue: 2
+  title: "Governance documents review"
+  estimated_person_hours: 3.0
+  category: null
+  assignee: "Masato Miyaichi"
+
+- issue: 3
+  title: "AI usage logging operation"
+  estimated_person_hours: 1.5
+  category: null
+  assignee: "Masato Miyaichi"
+
+- issue: 4
+  title: "Human work logging operation"
+  estimated_person_hours: 1.0
+  category: null
+  assignee: "Masato Miyaichi"
+
+- issue: 5
+  title: "Effort reporting validation"
+  estimated_person_hours: 2.0
+  category: null
+  assignee: "Masato Miyaichi"
+
+- issue: 6
+  title: "GitHub Actions validation"
+  estimated_person_hours: 2.5
+  category: null
+  assignee: "Masato Miyaichi"
+
+- issue: 7
+  title: "Takken data schema"
+  estimated_person_hours: 3.0
+  category: takken
+  assignee: "Masato Miyaichi"
+
+- issue: 8
+  title: "Takken sample content"
+  estimated_person_hours: 4.0
+  category: takken
+  assignee: "Masato Miyaichi"
+
+- issue: 9
+  title: "Takken text normalization"
+  estimated_person_hours: 6.0
+  category: takken
+  assignee: "Masato Miyaichi"
+
+- issue: 10
+  title: "Takken reading-script generation"
+  estimated_person_hours: 8.0
+  category: takken
+  assignee: "Masato Miyaichi"
+
+- issue: 11
+  title: "TTS provider abstraction"
+  estimated_person_hours: 8.0
+  category: takken
+  assignee: "Masato Miyaichi"
+
+- issue: 12
+  title: "Copyright and source management"
+  estimated_person_hours: 4.0
+  category: null
+  assignee: "Masato Miyaichi"
+
+- issue: 13
+  title: "Security review"
+  estimated_person_hours: 3.0
+  category: null
+  assignee: "Masato Miyaichi"
+
+- issue: 14
+  title: "Initial release preparation"
+  estimated_person_hours: 2.0
+  category: null
+  assignee: "Masato Miyaichi"

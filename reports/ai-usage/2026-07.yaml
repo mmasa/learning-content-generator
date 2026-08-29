@@ -1,0 +1,34 @@
+# AI usage log (schema: schemas/ai-usage-log.schema.json)
+- date: 2026-07-20T14:00:00+09:00
+  issue: 1
+  pull_request: null
+  operator: "Masato Miyaichi"
+  provider: Anthropic
+  product: "Claude Code"
+  model: claude-fable-5
+  purpose: >-
+    Repository bootstrap: initial structure, governance docs, templates,
+    log schemas, lcg CLI, tests, CI, takken content
+  category: null
+  tokens:
+    input: not-provided
+    cached_input: not-provided
+    output: not-provided
+    reasoning: not-provided
+    total: not-provided
+  measurement:
+    type: unknown
+  cost:
+    amount: unknown
+    currency: USD
+    type: unknown
+  prompt_reference: prompts/repository-bootstrap.md
+  generated_files:
+    - "(initial commit全体: 構成はPR参照)"
+  human_review:
+    status: pending
+    reviewer: null
+    result: null
+  notes: >-
+    Claude Codeセッションからトークン実数を取得できなかったため not-provided。
+    /cost 等で取得できた場合はこのエントリを実測値に更新し measurement.type: actual とする。

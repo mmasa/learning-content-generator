@@ -1,0 +1,87 @@
+# 架空のサンプル問題(FICTIONAL SAMPLE DATA)
+# 実在の宅建試験過去問ではありません。スキーマとパイプラインの動作確認用に
+# AIが作成した架空の問題であり、内容の正確性を保証するものではありません。
+- id: takken-q-sample-0001
+  source:
+    type: fictional
+    reference: src-fictional-samples
+    year: null
+    copyright_status: fictional
+    copyright_confirmed_by: "Masato Miyaichi"
+    copyright_confirmed_at: "2026-07-20"
+  field: takken-business-law
+  question_text: >-
+    (架空の設例)宅地建物取引業の免許に関する次の記述のうち、
+    架空法令上の原則として正しいものはどれか。
+  choices:
+    - number: 1
+      text: "二つ以上の都道府県に事務所を設置して事業を営む場合、国土交通大臣の免許を受ける。"
+    - number: 2
+      text: "一つの都道府県内にのみ事務所を設置する場合でも、常に国土交通大臣の免許を受ける。"
+    - number: 3
+      text: "免許は一度受ければ更新の必要はない。"
+    - number: 4
+      text: "事務所を設置しない個人は、いかなる場合も免許を受けることができない。"
+  correct_choice: 1
+  explanation: >-
+    (架空の解説)本サンプルでは、複数の都道府県に事務所を設置する場合は
+    大臣免許、単一の都道府県のみの場合は知事免許とする整理を正解としている。
+    スキーマ検証・生成パイプラインの動作確認用であり、実際の受験学習には使用しないこと。
+  choice_explanations:
+    - number: 1
+      text: "(架空)本サンプルの正解肢。"
+    - number: 2
+      text: "(架空)単一都道府県の場合は知事免許とする設定のため誤り。"
+    - number: 3
+      text: "(架空)免許に有効期間を設ける設定のため誤り。"
+    - number: 4
+      text: "(架空)本サンプルの設定では該当しないため誤り。"
+  difficulty: easy
+  tags: ["sample", "fictional", "license"]
+  law_reference: null
+  data_classification: Public
+  generated_by_ai: true
+  ai_usage_ref: "examples/ai-usage/2026-07.yaml (issue 130)"
+  review:
+    status: approved
+    reviewer: "Masato Miyaichi"
+    reviewed_at: "2026-07-20"
+    checklist_completed: true
+
+- id: takken-q-sample-0002
+  source:
+    type: fictional
+    reference: src-fictional-samples
+    year: null
+    copyright_status: fictional
+    copyright_confirmed_by: "Masato Miyaichi"
+    copyright_confirmed_at: "2026-07-20"
+  field: rights
+  question_text: >-
+    (架空の設例)AがBに対して土地の売買契約の意思表示を行った場合に関する
+    次の記述のうち、この架空設例の前提において最も適切なものはどれか。
+  choices:
+    - number: 1
+      text: "冗談で行った意思表示は、相手方がそれを知っていた場合でも常に有効である。"
+    - number: 2
+      text: "強迫による意思表示は、取り消すことができる。"
+    - number: 3
+      text: "書面によらない意思表示はすべて無効である。"
+    - number: 4
+      text: "意思表示は相手方に到達しなくても効力を生じる。"
+  correct_choice: 2
+  explanation: >-
+    (架空の解説)本サンプルでは、強迫による意思表示を取り消し得るものとする
+    整理を正解としている。動作確認用の架空問題であり、実際の民法の学習には
+    正規の教材を使用すること。
+  difficulty: easy
+  tags: ["sample", "fictional", "declaration-of-intent"]
+  law_reference: null
+  data_classification: Public
+  generated_by_ai: true
+  ai_usage_ref: "examples/ai-usage/2026-07.yaml (issue 130)"
+  review:
+    status: approved
+    reviewer: "Masato Miyaichi"
+    reviewed_at: "2026-07-20"
+    checklist_completed: true

@@ -1,0 +1,98 @@
+name: Feature
+description: 新機能の追加
+title: "feat: "
+labels: ["type:feature"]
+body:
+  - type: textarea
+    id: purpose
+    attributes:
+      label: Purpose
+      description: 何のために行うか
+    validations:
+      required: true
+  - type: textarea
+    id: background
+    attributes:
+      label: Background
+      description: 経緯・前提
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope
+    validations:
+      required: true
+  - type: textarea
+    id: out_of_scope
+    attributes:
+      label: Out of Scope
+  - type: textarea
+    id: deliverables
+    attributes:
+      label: Deliverables
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance_criteria
+    attributes:
+      label: Acceptance Criteria
+      description: 検証可能な完了条件(チェックリスト形式推奨)
+    validations:
+      required: true
+  - type: textarea
+    id: risks
+    attributes:
+      label: Risks
+  - type: textarea
+    id: security
+    attributes:
+      label: Security Considerations
+  - type: dropdown
+    id: data_classification
+    attributes:
+      label: Data Classification
+      options: ["Public", "Internal", "Confidential", "Restricted"]
+      default: 1
+    validations:
+      required: true
+  - type: input
+    id: assignee
+    attributes:
+      label: Assignee
+    validations:
+      required: true
+  - type: input
+    id: reviewer
+    attributes:
+      label: Reviewer
+    validations:
+      required: true
+  - type: input
+    id: planned_dates
+    attributes:
+      label: Planned Start / End Date
+      placeholder: "2026-07-20 / 2026-07-25"
+  - type: input
+    id: estimated_hours
+    attributes:
+      label: Estimated Person-Hours
+      description: 着手前に必須。reports/effort/estimates.yaml にも登録すること
+      placeholder: "4.0"
+    validations:
+      required: true
+  - type: input
+    id: actual_hours
+    attributes:
+      label: Actual Person-Hours
+      description: 完了時に Work Log の合計で確定
+      placeholder: "TBD"
+  - type: dropdown
+    id: ai_usage_planned
+    attributes:
+      label: AI Usage Planned
+      options: ["Yes", "No", "Undecided"]
+    validations:
+      required: true
+  - type: textarea
+    id: related
+    attributes:
+      label: Related Issues / Pull Requests

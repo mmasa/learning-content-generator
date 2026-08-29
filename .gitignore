@@ -1,0 +1,44 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.venv/
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Environment / secrets — never commit
+.env
+.env.*
+*.pem
+*.key
+credentials*.json
+service-account*.json
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
+
+# Content data policy:
+# raw source materials (copyright unverified) are never committed
+contents/*/raw/*
+!contents/*/raw/README.md
+!contents/*/raw/.gitkeep
+
+# generated audio files are large and are never committed
+contents/*/audio/*
+!contents/*/audio/README.md
+!contents/*/audio/.gitkeep
+*.mp3
+*.wav
+*.m4a
+*.flac
+
+# large intermediate artifacts
+contents/*/generated/cache/
+reports/**/*.tmp

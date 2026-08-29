@@ -1,0 +1,77 @@
+name: Content Review
+description: 学習コンテンツのレビュー(正確性・権利・読み上げ品質)
+title: "review: "
+labels: ["type:content-review"]
+body:
+  - type: textarea
+    id: purpose
+    attributes:
+      label: Purpose
+    validations:
+      required: true
+  - type: textarea
+    id: target
+    attributes:
+      label: Review Target
+      description: 対象ファイル・データ範囲・関連PR
+    validations:
+      required: true
+  - type: textarea
+    id: checklist
+    attributes:
+      label: Review Checklist
+      description: docs/templates/content-review-checklist.md をコピーして使用
+      value: |
+        docs/templates/content-review-checklist.md に従って確認する。
+        - [ ] 正確性(問題・正解・解説の整合)
+        - [ ] 権利・出典(著作権確認欄・出典記録)
+        - [ ] AI生成物の人間確認
+        - [ ] 読み上げ・音声品質(該当時)
+        - [ ] スキーマ検証・データ分類
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance_criteria
+    attributes:
+      label: Acceptance Criteria
+      description: チェックリスト全項目の確認完了・指摘事項の記録
+    validations:
+      required: true
+  - type: dropdown
+    id: data_classification
+    attributes:
+      label: Data Classification
+      options: ["Public", "Internal", "Confidential", "Restricted"]
+      default: 1
+    validations:
+      required: true
+  - type: input
+    id: assignee
+    attributes:
+      label: Assignee (Reviewer)
+    validations:
+      required: true
+  - type: input
+    id: estimated_hours
+    attributes:
+      label: Estimated Person-Hours
+      placeholder: "2.0"
+    validations:
+      required: true
+  - type: input
+    id: actual_hours
+    attributes:
+      label: Actual Person-Hours
+      placeholder: "TBD"
+  - type: dropdown
+    id: ai_usage_planned
+    attributes:
+      label: AI Usage Planned
+      description: AIレビューを補助に使う場合も人間の確認は省略しない
+      options: ["Yes", "No", "Undecided"]
+    validations:
+      required: true
+  - type: textarea
+    id: related
+    attributes:
+      label: Related Issues / Pull Requests

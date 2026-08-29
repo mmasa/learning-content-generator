@@ -1,0 +1,94 @@
+name: Bug
+description: 不具合の報告と修正
+title: "fix: "
+labels: ["type:bug"]
+body:
+  - type: textarea
+    id: purpose
+    attributes:
+      label: Purpose
+      description: 何を修正するか
+    validations:
+      required: true
+  - type: textarea
+    id: background
+    attributes:
+      label: Background / Reproduction Steps
+      description: 再現手順・発生環境
+    validations:
+      required: true
+  - type: textarea
+    id: expected_actual
+    attributes:
+      label: Expected vs Actual
+      description: 期待する挙動と実際の挙動
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope
+    validations:
+      required: true
+  - type: textarea
+    id: out_of_scope
+    attributes:
+      label: Out of Scope
+  - type: textarea
+    id: acceptance_criteria
+    attributes:
+      label: Acceptance Criteria
+      description: 修正の完了条件(回帰テストを含む)
+    validations:
+      required: true
+  - type: textarea
+    id: risks
+    attributes:
+      label: Risks
+  - type: textarea
+    id: security
+    attributes:
+      label: Security Considerations
+  - type: dropdown
+    id: data_classification
+    attributes:
+      label: Data Classification
+      options: ["Public", "Internal", "Confidential", "Restricted"]
+      default: 1
+    validations:
+      required: true
+  - type: input
+    id: assignee
+    attributes:
+      label: Assignee
+    validations:
+      required: true
+  - type: input
+    id: reviewer
+    attributes:
+      label: Reviewer
+    validations:
+      required: true
+  - type: input
+    id: estimated_hours
+    attributes:
+      label: Estimated Person-Hours
+      placeholder: "1.0"
+    validations:
+      required: true
+  - type: input
+    id: actual_hours
+    attributes:
+      label: Actual Person-Hours
+      placeholder: "TBD"
+  - type: dropdown
+    id: ai_usage_planned
+    attributes:
+      label: AI Usage Planned
+      options: ["Yes", "No", "Undecided"]
+    validations:
+      required: true
+  - type: textarea
+    id: related
+    attributes:
+      label: Related Issues / Pull Requests
