@@ -1,0 +1,17 @@
+# Work log (schema: schemas/work-log.schema.json)
+- date: 2026-07-20
+  issue: 1
+  work_type: Implementation
+  summary: >-
+    リポジトリ初期構築(基本文書・ガバナンス文書・Issue/PRテンプレート・ログスキーマ・
+    lcg CLI・テスト・CI・宅建コンテンツ初期構造、PR #15)
+  participants:
+    - name: "Masato Miyaichi"
+      hours: 6.0
+  elapsed_hours: 6.0
+  spent_person_hours: 6.0
+  ai_used: true
+  ai_tool: "Claude Code"
+  category: null
+  result: "PR #15 マージ完了(Codexレビュー指摘5件の修正・回帰テスト追加を含む)"
+  remaining_work: null

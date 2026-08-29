@@ -65,3 +65,35 @@
   notes: >-
     Verified lcg validate ai-usage and lcg report commands against
     reports/ai-usage/; no code or data changes were required.
+
+- date: 2026-08-30T00:00:00+00:00
+  issue: 4
+  pull_request: null
+  operator: "Masato Miyaichi"
+  provider: Anthropic
+  product: "Claude Code"
+  model: claude-sonnet-5
+  purpose: "Human work logging operation (issue #4)"
+  category: null
+  tokens:
+    input: not-provided
+    cached_input: not-provided
+    output: not-provided
+    reasoning: not-provided
+    total: not-provided
+  measurement:
+    type: unknown
+  cost:
+    amount: not-provided
+    currency: USD
+    type: unknown
+  prompt_reference: null
+  generated_files:
+    - reports/effort/2026-07.yaml
+  human_review:
+    status: pending
+    reviewer: null
+    result: null
+  notes: >-
+    Created reports/effort/2026-07.yaml recording issue #1's actual effort
+    and verified lcg validate work-log / lcg report effort.
