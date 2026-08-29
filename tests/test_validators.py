@@ -13,6 +13,13 @@ class TestValidateExamples:
     def test_example_work_logs_are_valid(self, examples_dir: Path) -> None:
         assert validate_work_logs(examples_dir / "effort") == []
 
+    def test_explicit_estimates_file_target_is_validated_as_estimates(
+        self, examples_dir: Path
+    ) -> None:
+        # Passing estimates.yaml directly must use IssueEstimate, not WorkLogEntry
+        # (which the directory form already gets right via the exclude filter).
+        assert validate_work_logs(examples_dir / "effort" / "estimates.yaml") == []
+
 
 class TestValidateBrokenFiles:
     def test_detects_person_hour_mismatch(self, tmp_path: Path) -> None:

@@ -47,7 +47,13 @@ def _collect(target: Path, *, exclude: frozenset[str] = frozenset()) -> list[Pat
 
 
 def validate_work_logs(target: Path) -> list[str]:
-    """Validate a work log file, or every log file in a directory."""
+    """Validate a work log file, or every log file in a directory.
+
+    A file target named ``estimates.yaml`` is validated as issue estimates,
+    matching how a directory target treats it (see ``ESTIMATES_FILENAME``).
+    """
+    if target.is_file() and target.name == ESTIMATES_FILENAME:
+        return _validate_file(target, IssueEstimate)
     errors: list[str] = []
     for path in _collect(target, exclude=frozenset({ESTIMATES_FILENAME})):
         errors.extend(_validate_file(path, WorkLogEntry))

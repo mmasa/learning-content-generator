@@ -27,9 +27,12 @@ def token_int(value: TokenCount) -> int:
     return value if isinstance(value, int) else 0
 
 
-def _cost_amount(record: AIUsageRecord) -> float:
-    amount = record.cost.amount
-    return float(amount) if isinstance(amount, int | float) else 0.0
+def _format_cost(cost_by_currency: dict[str, float]) -> Cell:
+    if not cost_by_currency:
+        return None
+    return "; ".join(
+        f"{round(amount, 4)} {currency}" for currency, amount in sorted(cost_by_currency.items())
+    )
 
 
 class _AIBucket:
@@ -40,7 +43,7 @@ class _AIBucket:
         self.output = 0
         self.reasoning = 0
         self.total = 0
-        self.cost = 0.0
+        self.cost_by_currency: dict[str, float] = defaultdict(float)
         self.non_numeric = 0
 
     def add(self, record: AIUsageRecord) -> None:
@@ -51,7 +54,8 @@ class _AIBucket:
         self.output += token_int(tokens.output)
         self.reasoning += token_int(tokens.reasoning)
         self.total += token_int(tokens.total)
-        self.cost += _cost_amount(record)
+        if isinstance(record.cost.amount, int | float):
+            self.cost_by_currency[record.cost.currency] += float(record.cost.amount)
         if any(not isinstance(v, int) for v in (tokens.input, tokens.output, tokens.total)):
             self.non_numeric += 1
 
@@ -73,7 +77,7 @@ def _ai_group_table(
             b.cached_input,
             b.output,
             b.total,
-            round(b.cost, 4),
+            _format_cost(b.cost_by_currency),
             b.non_numeric,
         ]
         for name, b in sorted(buckets.items())
@@ -175,6 +179,28 @@ def _hours_group_table(
         entries[key(entry)] += 1
     rows: list[list[Cell]] = [
         [name, entries[name], round(hours[name], 2)] for name in sorted(hours)
+    ]
+    return Table(title=title, columns=[key_label, "Entries", "Person-Hours"], rows=rows)
+
+
+def _person_hours_group_table(
+    title: str,
+    key_label: str,
+    logs: Iterable[WorkLogEntry],
+    name: str,
+    key: Callable[[WorkLogEntry], str],
+) -> Table:
+    """Like _hours_group_table, but sums only ``name``'s hours per entry
+    rather than the whole entry's spent_person_hours (which may include
+    other participants)."""
+    hours: dict[str, float] = defaultdict(float)
+    entries: dict[str, int] = defaultdict(int)
+    for entry in logs:
+        person_hours = next((p.hours for p in entry.participants if p.name == name), 0.0)
+        hours[key(entry)] += person_hours
+        entries[key(entry)] += 1
+    rows: list[list[Cell]] = [
+        [group, entries[group], round(hours[group], 2)] for group in sorted(hours)
     ]
     return Table(title=title, columns=[key_label, "Entries", "Person-Hours"], rows=rows)
 
@@ -299,6 +325,8 @@ def contributor_tables(
     )
     return [
         detail,
-        _hours_group_table(f"Effort by Month ({name})", "Month", person_logs, lambda e: e.month),
+        _person_hours_group_table(
+            f"Effort by Month ({name})", "Month", person_logs, name, lambda e: e.month
+        ),
         _ai_group_table(f"AI Usage by Model ({name})", "Model", person_records, lambda r: r.model),
     ]

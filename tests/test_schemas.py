@@ -4,8 +4,11 @@ The Pydantic models are the canonical definition; these tests keep the
 JSON Schemas in sync with them by checking both accept the same examples.
 """
 
+import importlib.util
 import json
+import sys
 from pathlib import Path
+from types import ModuleType
 from typing import Any
 
 import pytest
@@ -71,3 +74,71 @@ class TestTakkenSchemas:
         data = load_yaml(repo_root / "contents/takken/normalized/samples/sample-questions.yaml")
         for question in data:
             assert question["source"]["type"] == "fictional"
+
+
+def _load_validate_schemas_module(repo_root: Path) -> ModuleType:
+    """Import the CI script by path (it lives outside src/, not the package)."""
+    spec = importlib.util.spec_from_file_location(
+        "validate_schemas", repo_root / ".github/scripts/validate_schemas.py"
+    )
+    assert spec is not None and spec.loader is not None
+    module = importlib.util.module_from_spec(spec)
+    sys.modules[spec.name] = module
+    spec.loader.exec_module(module)
+    return module
+
+
+class TestNormalizedContentDiscovery:
+    """Regression coverage for the CI schema-validation script discovering all
+    files under contents/*/normalized/ rather than a hardcoded fixture list."""
+
+    def test_sample_questions_are_discovered_via_id_pattern(self, repo_root: Path) -> None:
+        module = _load_validate_schemas_module(repo_root)
+        validators = {
+            rel: Draft202012Validator(json.loads((repo_root / rel).read_text(encoding="utf-8")))
+            for rel in [
+                "contents/takken/schemas/question.schema.json",
+                "contents/takken/schemas/reading-script.schema.json",
+                "contents/takken/schemas/audio-metadata.schema.json",
+            ]
+        }
+        errors = module._validate_normalized_content(validators)
+        assert errors == []
+
+    def test_unrecognized_id_pattern_is_reported(self, tmp_path: Path, repo_root: Path) -> None:
+        module = _load_validate_schemas_module(repo_root)
+
+        # Self-contained fake ROOT: a copy of the real question schema plus a
+        # "fake" content category pointing at it, so path resolution doesn't
+        # need to escape tmp_path.
+        schema_dir = tmp_path / "contents" / "takken" / "schemas"
+        schema_dir.mkdir(parents=True)
+        schema_text = (repo_root / "contents/takken/schemas/question.schema.json").read_text(
+            encoding="utf-8"
+        )
+        (schema_dir / "question.schema.json").write_text(schema_text, encoding="utf-8")
+
+        category = tmp_path / "contents" / "fake"
+        (category / "config").mkdir(parents=True)
+        (category / "normalized").mkdir()
+        (category / "config" / "content.yaml").write_text(
+            "schemas:\n  question: ../../takken/schemas/question.schema.json\n",
+            encoding="utf-8",
+        )
+        (category / "normalized" / "bad.yaml").write_text(
+            "- id: not-a-known-prefix-0001\n", encoding="utf-8"
+        )
+
+        original_root = module.ROOT
+        module.ROOT = tmp_path
+        try:
+            validators = {
+                "contents/takken/schemas/question.schema.json": Draft202012Validator(
+                    json.loads(schema_text)
+                )
+            }
+            errors = module._validate_normalized_content(validators)
+        finally:
+            module.ROOT = original_root
+        assert len(errors) == 1
+        assert "no schema matches id" in errors[0]

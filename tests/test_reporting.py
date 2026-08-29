@@ -1,8 +1,16 @@
+import datetime
 from pathlib import Path
 
 import pytest
 
 from learning_content_generator.application import reporting
+from learning_content_generator.domain.models import (
+    AIUsageRecord,
+    Cost,
+    HumanReview,
+    Measurement,
+    Tokens,
+)
 from learning_content_generator.exporters.formats import Table, to_csv, to_json, to_markdown
 from learning_content_generator.infrastructure.log_store import LogRepository
 
@@ -39,6 +47,16 @@ class TestEffortReport:
         assert rows["Masato Miyaichi"][2] == pytest.approx(2.0)  # AI-assisted
         assert rows["Member C"][1] == pytest.approx(0.5)
 
+    def test_contributor_month_hours_exclude_other_participants(self, repo: LogRepository) -> None:
+        # Two of the four July entries have other participants alongside
+        # "Masato Miyaichi" (spent_person_hours 1.0 and 1.5), so a bucket that
+        # summed the whole entry instead of this contributor's own hours
+        # would report 4.0 instead of the correct 0.5 + 1.5 + 0.5 = 2.5.
+        tables = reporting.contributor_tables("Masato Miyaichi", repo.work_logs(), repo.ai_usage())
+        by_month = find_table(tables, "Effort by Month (Masato Miyaichi)")
+        rows = {row[0]: row for row in by_month.rows}
+        assert rows["2026-07"][2] == pytest.approx(2.5)
+
     def test_ai_vs_non_ai_split(self, repo: LogRepository) -> None:
         tables = reporting.effort_tables(repo.work_logs(), repo.estimates())
         split = find_table(tables, "AI vs Non-AI Work")
@@ -65,6 +83,29 @@ class TestAIUsageReport:
         assert rows["approved"] == 2
         assert rows["pending"] == 1
         assert rows["approval rate (% of reviewed)"] == pytest.approx(100.0)
+
+    def test_cost_kept_separate_by_currency(self) -> None:
+        def make_record(amount: float, currency: str) -> AIUsageRecord:
+            return AIUsageRecord(
+                date=datetime.datetime(2026, 7, 1),
+                operator="Masato Miyaichi",
+                provider="Anthropic",
+                product="Claude Code",
+                model="m1",
+                purpose="test",
+                tokens=Tokens(),
+                measurement=Measurement(type="unknown"),
+                cost=Cost(amount=amount, currency=currency, type="actual"),
+                human_review=HumanReview(status="pending"),
+            )
+
+        records = [make_record(1.0, "USD"), make_record(100.0, "JPY")]
+        tables = reporting.ai_usage_tables(records)
+        by_model = find_table(tables, "AI Usage by Model")
+        cost_cell = by_model.rows[0][-2]
+        assert isinstance(cost_cell, str)
+        assert "1.0 USD" in cost_cell
+        assert "100.0 JPY" in cost_cell
 
     def test_monthly_filter(self, repo: LogRepository) -> None:
         tables = reporting.monthly_tables(
