@@ -13,3 +13,20 @@
   category: governance
   result: "10文書レビュー完了。ISO/IEC 27001表記不統一を5文書で修正、相互リンク・disclaimer文言を確認"
   remaining_work: null
+
+- date: 2026-08-29
+  issue: 3
+  work_type: Testing
+  summary: "AI利用ログ運用の受け入れ基準を検証(validate/report コマンドの実地確認)"
+  participants:
+    - name: "Masato Miyaichi"
+      hours: 0.5
+  elapsed_hours: 0.5
+  spent_person_hours: 0.5
+  ai_used: true
+  ai_tool: "Claude Code"
+  category: governance
+  result: >-
+    lcg validate ai-usage / lcg report ai-usage,issue,monthly を実行し合格を確認。
+    issue番号の暫定値(0)が残っていないことも確認。データ・コード変更は不要と判断
+  remaining_work: null
