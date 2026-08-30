@@ -21,7 +21,11 @@ markdown / json / csv の全出力形式で実データ(`reports/effort/`, `repo
   ゼロ除算を回避している。`docs/operations/work-logging.md` の定義と一致。妥当と判断。
 - **Approval Rate** = `approved / (approved + rejected + revised) * 100`
   (`application/reporting.py: _review_status_table`)。`pending` は分母から除外される
-  (未レビューを承認率に混ぜない設計)。妥当と判断。
+  (未レビューを承認率に混ぜない設計)で、挙動としては妥当と判断する。
+  ただし `docs/governance/review-and-approval.md` はレビュー手順を定めるのみで
+  承認率の算出式そのものは明文化していない。本検証時点ではこの式は実装から読み取れる
+  仕様であって文書化された仕様ではないため、「文書と一致」ではなく「実装は妥当だが、
+  式の文書化が未了」という扱いとする(文書化自体は本Issueのスコープ外)。
 
 ## 見つかった問題(改善Issueを起票)
 
@@ -52,7 +56,7 @@ uv run lcg report monthly --month 2026-08
 | #2 | Governance documents review | 3.00 | 1.00 | -2.00 | -66.70 |
 | #3 | AI usage logging operation | 1.50 | 0.50 | -1.00 | -66.70 |
 | #4 | Human work logging operation | 1.00 | 0.50 | -0.50 | -50.00 |
-| #5 | Effort reporting validation | 2.00 | 0.00 | -2.00 | -100.00 |
+| #5 | Effort reporting validation | 2.00 | 2.00 | 0.00 | 0.00 |
 | #6 | GitHub Actions validation | 2.50 | 0.00 | -2.50 | -100.00 |
 | #7 | Takken data schema | 3.00 | 0.00 | -3.00 | -100.00 |
 | #8 | Takken sample content | 4.00 | 0.00 | -4.00 | -100.00 |
@@ -69,7 +73,7 @@ uv run lcg report monthly --month 2026-08
 
 | Contributor | Person-Hours | AI-Assisted PH | Non-AI PH |
 | --- | --- | --- | --- |
-| Masato Miyaichi | 2.00 | 2.00 | 0.00 |
+| Masato Miyaichi | 4.00 | 4.00 | 0.00 |
 
 ## Effort by Work Type (2026-08)
 
@@ -77,7 +81,7 @@ uv run lcg report monthly --month 2026-08
 | --- | --- | --- |
 | Data Creation | 1 | 0.50 |
 | Review | 1 | 1.00 |
-| Testing | 1 | 0.50 |
+| Testing | 2 | 2.50 |
 
 ## AI Usage by Issue (2026-08)
 
@@ -86,13 +90,17 @@ uv run lcg report monthly --month 2026-08
 | #2 | 1 | 0 | 0 | 0 | 0 | - | 1 |
 | #3 | 1 | 0 | 0 | 0 | 0 | - | 1 |
 | #4 | 1 | 0 | 0 | 0 | 0 | - | 1 |
+| #5 | 1 | 0 | 0 | 0 | 0 | - | 1 |
 
 ## AI Usage by Model (2026-08)
 
 | Model | Runs | Input Tokens | Cached Input | Output Tokens | Total Tokens | Cost | Entries w/o Numeric Tokens |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| claude-sonnet-5 | 3 | 0 | 0 | 0 | 0 | - | 3 |
+| claude-sonnet-5 | 4 | 0 | 0 | 0 | 0 | - | 4 |
 ```
+
+(このコマンドはこのPRの最終コミットを対象に再実行して再現性を確認したもの。
+Issue #5 の実績エントリ自体を含む月なので #5 行は Estimated/Actual が一致し Variance 0 になる。)
 
 見ての通り #1(7月に6.0h実施・見積と完全一致)が8月レポートでは
 Estimated 6.00 / Actual 0.00 / Variance -100.00% と表示されており、これが #19 の指す問題である。
@@ -104,5 +112,6 @@ Estimated 6.00 / Actual 0.00 / Variance -100.00% と表示されており、こ�
 - `report monthly` の Effort by Issue のみ、見積と実績の集計範囲不一致という設計上の問題があり、
   Issue #19 として起票し次のIssueで修正する
 - 表示の頑健性として Issue #20(`|` エスケープ)を追加で起票した
-- 差異率・承認率の定義は仕様(`docs/operations/work-logging.md`,
-  `docs/governance/review-and-approval.md`)と一致しており妥当
+- 差異率の定義は `docs/operations/work-logging.md` の仕様と一致しており妥当。
+  承認率の定義は実装として妥当だが、算出式は現時点でどの文書にも明文化されていない
+  (`docs/governance/review-and-approval.md` はレビュー手順のみを定める)

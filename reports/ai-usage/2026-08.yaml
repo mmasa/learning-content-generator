@@ -122,6 +122,9 @@
   prompt_reference: null
   generated_files:
     - reports/quality/2026-08-report-validation.md
+    - reports/effort/2026-08.yaml
+    - reports/ai-usage/2026-08.yaml
+    - reports/effort/estimates.yaml
   human_review:
     status: pending
     reviewer: null
