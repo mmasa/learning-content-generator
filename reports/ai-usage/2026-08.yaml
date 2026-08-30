@@ -98,6 +98,41 @@
     Created reports/effort/2026-07.yaml recording issue #1's actual effort
     and verified lcg validate work-log / lcg report effort.
 
+- date: 2026-08-30T01:00:00+00:00
+  issue: 5
+  pull_request: null
+  operator: "Masato Miyaichi"
+  provider: Anthropic
+  product: "Claude Code"
+  model: claude-sonnet-5
+  purpose: "Effort reporting validation (issue #5)"
+  category: null
+  tokens:
+    input: not-provided
+    cached_input: not-provided
+    output: not-provided
+    reasoning: not-provided
+    total: not-provided
+  measurement:
+    type: unknown
+  cost:
+    amount: not-provided
+    currency: USD
+    type: unknown
+  prompt_reference: null
+  generated_files:
+    - reports/quality/2026-08-report-validation.md
+    - reports/effort/2026-08.yaml
+    - reports/ai-usage/2026-08.yaml
+    - reports/effort/estimates.yaml
+  human_review:
+    status: pending
+    reviewer: null
+    result: null
+  notes: >-
+    Validated all lcg report subcommands across markdown/json/csv against
+    real data; found and filed issues #19 and #20 for report bugs.
+
 - date: 2026-08-30T02:00:00+00:00
   issue: 6
   pull_request: null

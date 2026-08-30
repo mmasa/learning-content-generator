@@ -82,3 +82,15 @@
   estimated_person_hours: 2.0
   category: null
   assignee: "Masato Miyaichi"
+
+- issue: 19
+  title: "Monthly report shows all-project estimates against month-filtered actuals"
+  estimated_person_hours: 1.5
+  category: null
+  assignee: "Masato Miyaichi"
+
+- issue: 20
+  title: "Markdown report cells don't escape literal pipe characters"
+  estimated_person_hours: 0.5
+  category: null
+  assignee: "Masato Miyaichi"
