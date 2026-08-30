@@ -45,3 +45,21 @@
   category: null
   result: "lcg validate work-log / lcg report effort が正常動作することを確認"
   remaining_work: null
+
+- date: 2026-08-30
+  issue: 6
+  work_type: Testing
+  summary: >-
+    CIワークフロー10ジョブの正常系実績確認と、不備ありPR(PR #22)による
+    異常系検証・ブランチ保護設定の確認
+  participants:
+    - name: "Masato Miyaichi"
+      hours: 2.5
+  elapsed_hours: 2.5
+  spent_person_hours: 2.5
+  ai_used: true
+  ai_tool: "Claude Code"
+  category: null
+  result: >-
+    受け入れ基準3件すべてを実地検証で確認。ブランチ保護設定の変更は不要と判断
+  remaining_work: null
