@@ -1,0 +1,6 @@
+# Deliberately invalid entry for CI negative-path testing (issue #6).
+# Not real content; removed before merge.
+- id: takken-q-ci-negative-check
+  field: rights
+  # missing required fields (source, question_text, choices, correct_choice,
+  # explanation, data_classification, review) on purpose
