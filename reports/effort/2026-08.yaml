@@ -45,3 +45,20 @@
   category: null
   result: "lcg validate work-log / lcg report effort が正常動作することを確認"
   remaining_work: null
+
+- date: 2026-08-30
+  issue: 7
+  work_type: Review
+  summary: "宅建4スキーマ(question/reading-script/audio-metadata/source-record)のレビューと変更手順の文書化"
+  participants:
+    - name: "Masato Miyaichi"
+      hours: 3.0
+  elapsed_hours: 3.0
+  spent_person_hours: 3.0
+  ai_used: true
+  ai_tool: "Claude Code"
+  category: takken
+  result: >-
+    reading-script に pause_ms、audio-metadata に is_placeholder を追加(実運用ギャップ)。
+    contents/takken/README.md にスキーマ変更手順を追記。回帰テスト追加
+  remaining_work: "copyright_status: unverified のCI検出はIssue #12で対応"

@@ -70,6 +70,46 @@ class TestTakkenSchemas:
         errors = [e for item in normalized for e in validator.iter_errors(item)]
         assert errors == [], [e.message for e in errors]
 
+    def test_reading_script_sample_matches_schema(self, repo_root: Path) -> None:
+        validator = load_schema(repo_root, "contents/takken/schemas/reading-script.schema.json")
+        script = {
+            "id": "takken-rs-sample-0001",
+            "question_id": "takken-q-sample-0001",
+            "title": "サンプル問題の読み上げ原稿",
+            "style": "drill",
+            "sections": [
+                {"role": "intro", "text": "それでは問題です。"},
+                {"role": "question", "text": "(架空の設例)..."},
+                {"role": "pause", "text": "", "pause_ms": 1500},
+                {"role": "answer", "text": "正解は1番です。"},
+                {
+                    "role": "explanation",
+                    "text": "(架空の解説)...",
+                    "reading_notes": "第は「だい」と読む",
+                },
+            ],
+            "estimated_duration_seconds": 45.0,
+            "generated_by_ai": True,
+            "ai_usage_ref": None,
+            "review": {"status": "pending"},
+        }
+        errors = list(validator.iter_errors(script))
+        assert errors == [], [e.message for e in errors]
+
+    def test_audio_metadata_sample_matches_schema(self, repo_root: Path) -> None:
+        validator = load_schema(repo_root, "contents/takken/schemas/audio-metadata.schema.json")
+        metadata = {
+            "id": "takken-au-sample-0001",
+            "script_id": "takken-rs-sample-0001",
+            "provider": "mock",
+            "voice": "narrator-jp-default",
+            "audio_format": "wav",
+            "generated_at": "2026-08-30T00:00:00+09:00",
+            "is_placeholder": True,
+        }
+        errors = list(validator.iter_errors(metadata))
+        assert errors == [], [e.message for e in errors]
+
     def test_sample_questions_are_fictional(self, repo_root: Path) -> None:
         data = load_yaml(repo_root / "contents/takken/normalized/samples/sample-questions.yaml")
         for question in data:
