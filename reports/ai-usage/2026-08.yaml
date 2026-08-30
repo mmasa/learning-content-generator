@@ -132,3 +132,36 @@
   notes: >-
     Validated all lcg report subcommands across markdown/json/csv against
     real data; found and filed issues #19 and #20 for report bugs.
+
+- date: 2026-08-30T02:00:00+00:00
+  issue: 6
+  pull_request: null
+  operator: "Masato Miyaichi"
+  provider: Anthropic
+  product: "Claude Code"
+  model: claude-sonnet-5
+  purpose: "GitHub Actions / branch protection validation (issue #6)"
+  category: null
+  tokens:
+    input: not-provided
+    cached_input: not-provided
+    output: not-provided
+    reasoning: not-provided
+    total: not-provided
+  measurement:
+    type: unknown
+  cost:
+    amount: not-provided
+    currency: USD
+    type: unknown
+  prompt_reference: null
+  generated_files:
+    - reports/quality/2026-08-ci-validation.md
+  human_review:
+    status: pending
+    reviewer: null
+    result: null
+  notes: >-
+    Verified all 10 CI jobs pass on well-formed PRs and correctly fail on a
+    deliberately broken PR (#22, closed without merging); confirmed branch
+    protection blocks merging while checks fail.
