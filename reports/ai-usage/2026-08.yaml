@@ -202,3 +202,40 @@
     is_placeholder (audio-metadata) to close gaps found against
     law-podcast-generator's TTS design; documented the schema-change
     procedure in contents/takken/README.md.
+
+- date: 2026-09-05T00:00:00+00:00
+  issue: 8
+  pull_request: null
+  operator: "Masato Miyaichi"
+  provider: Anthropic
+  product: "Claude Code"
+  model: claude-sonnet-5
+  purpose: "Takken sample content expansion (issue #8)"
+  category: takken
+  tokens:
+    input: not-provided
+    cached_input: not-provided
+    output: not-provided
+    reasoning: not-provided
+    total: not-provided
+  measurement:
+    type: unknown
+  cost:
+    amount: not-provided
+    currency: USD
+    type: unknown
+  prompt_reference: null
+  generated_files:
+    - contents/takken/normalized/samples/sample-questions.yaml
+    - reports/quality/2026-08-takken-content-review.md
+  human_review:
+    status: approved
+    reviewer: "Masato Miyaichi"
+    result: >-
+      Reviewed both new fictional questions (laws-restrictions,
+      tax-appraisal) against content-review-checklist.md and approved.
+  notes: >-
+    Drafted two fictional questions to cover the two Takken fields with
+    no prior sample (laws-restrictions, tax-appraisal), fictional legal
+    frameworks deliberately diverging from real Japanese law/rates to
+    reduce resemblance to real past exam questions.
