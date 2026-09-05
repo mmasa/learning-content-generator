@@ -47,6 +47,43 @@
   remaining_work: null
 
 - date: 2026-08-30
+  issue: 5
+  work_type: Testing
+  summary: >-
+    lcg report の5サブコマンドをmarkdown/json/csv全形式・実データで検証、
+    reports/quality/2026-08-report-validation.md にまとめ
+  participants:
+    - name: "Masato Miyaichi"
+      hours: 2.0
+  elapsed_hours: 2.0
+  spent_person_hours: 2.0
+  ai_used: true
+  ai_tool: "Claude Code"
+  category: null
+  result: >-
+    差異率・承認率の定義は妥当と確認。月次レポートの見積範囲不一致(#19)と
+    Markdownの`|`未エスケープ(#20)を発見しIssue化
+  remaining_work: "#19, #20 の修正は別Issueで対応"
+
+- date: 2026-08-30
+  issue: 6
+  work_type: Testing
+  summary: >-
+    CIワークフロー10ジョブの正常系実績確認と、不備ありPR(PR #22)による
+    異常系検証・ブランチ保護設定の確認
+  participants:
+    - name: "Masato Miyaichi"
+      hours: 2.5
+  elapsed_hours: 2.5
+  spent_person_hours: 2.5
+  ai_used: true
+  ai_tool: "Claude Code"
+  category: null
+  result: >-
+    受け入れ基準3件すべてを実地検証で確認。ブランチ保護設定の変更は不要と判断
+  remaining_work: null
+
+- date: 2026-08-30
   issue: 7
   work_type: Review
   summary: "宅建4スキーマ(question/reading-script/audio-metadata/source-record)のレビューと変更手順の文書化"
