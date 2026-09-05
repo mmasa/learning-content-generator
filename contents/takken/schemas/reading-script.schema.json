@@ -29,6 +29,11 @@
           "reading_notes": {
             "type": ["string", "null"],
             "description": "Pronunciation guidance: readings for numbers, symbols, law names"
+          },
+          "pause_ms": {
+            "type": ["integer", "null"],
+            "minimum": 0,
+            "description": "Explicit pause duration in milliseconds, primarily for role: pause sections. Kept structural (not embedded in text) because TTS providers cannot reliably infer pause length from punctuation alone."
           }
         }
       }

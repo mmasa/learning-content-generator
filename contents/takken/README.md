@@ -52,6 +52,27 @@ source:
   copyright_confirmed_at: "2026-07-20"
 ```
 
+## スキーマ変更手順(影響範囲)
+
+`schemas/` 配下のスキーマを変更する際は、[change-management](../../docs/governance/change-management.md)
+に従い Issue と PR を通す。影響範囲は以下を確認する。
+
+| 変更内容 | 確認すること |
+| --- | --- |
+| 必須プロパティの追加・型変更(破壊的) | 既存データ(`normalized/`, `metadata/`)が新スキーマで検証に通るか。通らない場合は移行(マイグレーション)方針をPRに明記する |
+| 任意プロパティの追加(非破壊的) | `tests/test_schemas.py` のサンプル検証、`.github/scripts/validate_schemas.py`(`contents/*/normalized/` を動的に走査する)がグリーンであること |
+| `id` の pattern 変更 | `validate_schemas.py` は各スキーマの `properties.id.pattern` で対象データを振り分けるため、pattern を変えると振り分けが変わる。既存IDとの整合を確認する |
+| `field` / `enum` の値の追加・削除 | `config/content.yaml` の `fields` リストとの整合、既存データへの影響 |
+| 新しいコンテンツ種別の追加(スキーマ新設) | `config/content.yaml` の `schemas:` にキーを追加すれば `validate_schemas.py` が自動的に対象データを検出する(ハードコードされたファイルリストは持たない設計) |
+
+実データ投入(Issue #8以降)より前にスキーマを固めることを優先する
+(投入後の破壊的変更はリスクが高いため、[risk-management](../../docs/governance/risk-management.md) 参照)。
+
+`source.copyright_status` / `metadata/sources.yaml` の `copyright_status` が
+`unverified` のデータをコミットさせない自動チェックは未実装([Issue #12](https://github.com/mmasa/learning-content-generator/issues/12)
+で対応予定)。現状はレビュー([content-review-checklist](../../docs/templates/content-review-checklist.md))
+での人間確認が唯一の防波堤である。
+
 ## 出題分野(field)
 
 | 値 | 分野 |

@@ -22,6 +22,10 @@
     },
     "checksum_sha256": { "type": ["string", "null"], "pattern": "^[0-9a-f]{64}$" },
     "ai_usage_ref": { "type": ["string", "null"] },
+    "is_placeholder": {
+      "type": "boolean",
+      "description": "True when this audio is a non-speech placeholder (e.g. a mock/offline TTS provider used during development), not real synthesized narration"
+    },
     "notes": { "type": ["string", "null"] }
   }
 }
