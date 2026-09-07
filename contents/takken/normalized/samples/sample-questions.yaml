@@ -48,6 +48,103 @@
     reviewed_at: "2026-07-20"
     checklist_completed: true
 
+- id: takken-q-sample-0004
+  source:
+    type: fictional
+    reference: src-fictional-samples
+    year: null
+    copyright_status: fictional
+    copyright_confirmed_by: "Masato Miyaichi"
+    copyright_confirmed_at: "2026-08-30"
+  field: tax-appraisal
+  question_text: >-
+    (架空の設例)個人が土地を取得した場合の架空不動産取得税に関する
+    次の記述のうち、この架空設例の前提において正しいものはどれか。
+  choices:
+    - number: 1
+      text: "架空不動産取得税の税率は、取得原因にかかわらず常に一律6パーセントである。"
+    - number: 2
+      text: "相続により土地を取得した場合には、架空不動産取得税は課されない。"
+    - number: 3
+      text: "架空不動産取得税は、取得した土地の固定資産税評価額を課税標準として算定される。"
+    - number: 4
+      text: "架空不動産取得税の納税義務者は、土地の譲渡人(売主)である。"
+  correct_choice: 3
+  explanation: >-
+    (架空の解説)本サンプルでは、架空不動産取得税は取得した土地の固定資産税評価額を
+    課税標準として算定するという整理を正解としている。税率・相続時の扱い・納税義務者は
+    いずれも本サンプル固有の設定であり、実在の地方税法上の不動産取得税の規定とは異なる。
+    スキーマ検証・生成パイプラインの動作確認用であり、実際の受験学習には使用しないこと。
+  choice_explanations:
+    - number: 1
+      text: "(架空)本サンプルでは取得原因により税率が異なる設定のため誤り。"
+    - number: 2
+      text: "(架空)本サンプルでは相続の場合も課税対象とする設定のため誤り。"
+    - number: 3
+      text: "(架空)本サンプルの正解肢。"
+    - number: 4
+      text: "(架空)本サンプルでは取得者(買主)を納税義務者とする設定のため誤り。"
+  difficulty: medium
+  tags: ["sample", "fictional", "acquisition-tax"]
+  law_reference: null
+  data_classification: Public
+  generated_by_ai: true
+  ai_usage_ref: "reports/ai-usage/2026-08.yaml (issue 8)"
+  review:
+    status: approved
+    reviewer: "Masato Miyaichi"
+    reviewed_at: "2026-08-30"
+    checklist_completed: true
+
+- id: takken-q-sample-0003
+  source:
+    type: fictional
+    reference: src-fictional-samples
+    year: null
+    copyright_status: fictional
+    copyright_confirmed_by: "Masato Miyaichi"
+    copyright_confirmed_at: "2026-08-30"
+  field: laws-restrictions
+  question_text: >-
+    (架空の設例)高さ制限地区に関する次の記述のうち、
+    架空都市計画法上の原則として正しいものはどれか。
+  choices:
+    - number: 1
+      text: "高さ制限地区内では、用途にかかわらず建築物の高さは一律15メートルを超えてはならない。"
+    - number: 2
+      text: "高さ制限地区内であっても、指定行政庁の許可を得れば高さの上限を超えて建築することができる。"
+    - number: 3
+      text: "高さ制限地区の指定権限は市町村長のみにあり、都道府県知事には権限がない。"
+    - number: 4
+      text: "高さ制限地区内の既存不適格建築物は、増築を行う場合には常に是正義務を負う。"
+  correct_choice: 2
+  explanation: >-
+    (架空の解説)本サンプルでは、高さ制限地区内の建築物は原則として高さ15メートルを
+    上限とするが、指定行政庁の許可を得た場合はこの上限を超えて建築できるとする整理を
+    正解としている。指定権限の主体・既存不適格建築物の是正義務については本サンプル
+    固有の設定であり、実在の都市計画法・建築基準法の規定とは異なる。
+    スキーマ検証・生成パイプラインの動作確認用であり、実際の受験学習には使用しないこと。
+  choice_explanations:
+    - number: 1
+      text: "(架空)許可により例外が認められる設定のため「一律」は誤り。"
+    - number: 2
+      text: "(架空)本サンプルの正解肢。"
+    - number: 3
+      text: "(架空)本サンプルでは指定権限の主体を都道府県知事のみに限定していないため誤り。"
+    - number: 4
+      text: "(架空)本サンプルでは常に是正義務を負うとは設定していないため誤り。"
+  difficulty: medium
+  tags: ["sample", "fictional", "height-restriction"]
+  law_reference: null
+  data_classification: Public
+  generated_by_ai: true
+  ai_usage_ref: "reports/ai-usage/2026-08.yaml (issue 8)"
+  review:
+    status: approved
+    reviewer: "Masato Miyaichi"
+    reviewed_at: "2026-08-30"
+    checklist_completed: true
+
 - id: takken-q-sample-0002
   source:
     type: fictional

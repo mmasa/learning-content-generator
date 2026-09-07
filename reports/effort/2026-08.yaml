@@ -99,3 +99,22 @@
     reading-script に pause_ms、audio-metadata に is_placeholder を追加(実運用ギャップ)。
     contents/takken/README.md にスキーマ変更手順を追記。回帰テスト追加
   remaining_work: "copyright_status: unverified のCI検出はIssue #12で対応"
+
+- date: 2026-09-05
+  issue: 8
+  work_type: Data Creation
+  summary: >-
+    laws-restrictions・tax-appraisal分野の架空サンプル問題を各1問作成し、
+    content-review-checklistでレビュー・承認
+  participants:
+    - name: "Masato Miyaichi"
+      hours: 4.0
+  elapsed_hours: 4.0
+  spent_person_hours: 4.0
+  ai_used: true
+  ai_tool: "Claude Code"
+  category: takken
+  result: >-
+    rights/laws-restrictions/tax-appraisal/takken-business-lawの4分野すべてに
+    1問以上が揃った。スキーマ検証合格、レビュー記録を作成
+  remaining_work: null
