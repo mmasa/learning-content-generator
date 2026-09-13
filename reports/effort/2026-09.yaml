@@ -1,0 +1,19 @@
+# Work log (schema: schemas/work-log.schema.json)
+- date: 2026-09-13
+  issue: 26
+  work_type: Documentation
+  summary: >-
+    Codex/Gemini/Claude Code共通対応のためGEMINI.mdを新規追加し、
+    README.md/getting-started.mdの参照箇所とestimates.yamlを更新
+  participants:
+    - name: "Masato Miyaichi"
+      hours: 1.0
+  elapsed_hours: 1.0
+  spent_person_hours: 1.0
+  ai_used: true
+  ai_tool: "Claude Code"
+  category: null
+  result: >-
+    GEMINI.md追加、README.md/getting-started.md更新、estimates.yamlに見積登録、
+    AI利用ログ記録。markdownlint通過。uv未導入環境のためpytest/ruff/mypy未実行
+  remaining_work: "uv環境でのpytest/ruff/mypy実行確認、他者レビューへの移行(複数人運用開始時)"

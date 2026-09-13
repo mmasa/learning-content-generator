@@ -88,4 +88,6 @@ uv run lcg validate work-log reports/effort
 ## 参加方法
 
 [CONTRIBUTING.md](CONTRIBUTING.md) を参照してください。
-AIエージェント(Claude Code 等)向けのルールは [AGENTS.md](AGENTS.md) / [CLAUDE.md](CLAUDE.md) にあります。
+AIエージェント向けのルールは [AGENTS.md](AGENTS.md) にあります(全エージェント共通、
+Codex 等はこのファイルを直接参照します)。ツール固有の補足は
+[CLAUDE.md](CLAUDE.md)(Claude Code)/ [GEMINI.md](GEMINI.md)(Gemini CLI)にあります。
