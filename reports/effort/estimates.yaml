@@ -94,3 +94,9 @@
   estimated_person_hours: 0.5
   category: null
   assignee: "Masato Miyaichi"
+
+- issue: 26
+  title: "improve: Codex/Gemini/Claude Code 共通対応のためGEMINI.md追加"
+  estimated_person_hours: 1.0
+  category: null
+  assignee: "Masato Miyaichi"

@@ -15,8 +15,10 @@
 
 ガバナンス文書([docs/governance/](../governance/))は最初に通読する必要はありません。
 レビュー・セキュリティ・インシデント対応など、該当する場面で参照すれば十分です。
-AIエージェント(Claude Code等)を使う場合、エージェントは [AGENTS.md](../../AGENTS.md) /
-[CLAUDE.md](../../CLAUDE.md) のルールに従います。
+AIエージェント(Claude Code、Codex、Gemini CLI等)を使う場合、エージェントは
+[AGENTS.md](../../AGENTS.md) の共通ルールに従います。ツール固有の補足は
+[CLAUDE.md](../../CLAUDE.md)(Claude Code)/ [GEMINI.md](../../GEMINI.md)(Gemini CLI)にあります
+(Codex は AGENTS.md を直接参照するため追加ファイルは不要です)。
 
 ## 2. 環境セットアップ
 

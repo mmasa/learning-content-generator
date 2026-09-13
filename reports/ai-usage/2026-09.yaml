@@ -1,0 +1,32 @@
+# AI usage log (schema: schemas/ai-usage-log.schema.json)
+- date: 2026-09-13T00:00:00+09:00
+  issue: 26
+  pull_request: null
+  operator: "Masato Miyaichi"
+  provider: Anthropic
+  product: "Claude Code"
+  model: claude-sonnet-5
+  purpose: "GEMINI.md追加によるCodex/Gemini/Claude Code共通対応(issue #26)"
+  category: null
+  tokens:
+    input: not-provided
+    cached_input: not-provided
+    output: not-provided
+    reasoning: not-provided
+    total: not-provided
+  measurement:
+    type: unknown
+  cost:
+    amount: not-provided
+    currency: USD
+    type: unknown
+  prompt_reference: null
+  generated_files:
+    - GEMINI.md
+    - README.md
+    - docs/operations/getting-started.md
+  human_review:
+    status: pending
+    reviewer: null
+    result: null
+  notes: null
